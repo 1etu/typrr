@@ -1,0 +1,58 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id            String    @id
+  discordId     String    @unique
+  username      String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  gamesPlayed   Int       @default(0)
+  gamesWon      Int       @default(0)
+  totalRaces    Int       @default(0)
+  bestWPM       Int       @default(0)
+  averageWPM    Float     @default(0)
+  totalChars    Int       @default(0)
+  
+  typeStats     TypeStat[]
+  achievements  UserAchievement[]
+}
+
+model TypeStat {
+  id        String   @id @default(cuid())
+  userId    String
+  wpm       Int
+  accuracy  Float
+  wordCount Int
+  timestamp DateTime @default(now())
+  
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model Achievement {
+  id          String    @id
+  name        String
+  description String
+  condition   String    
+  icon        String?
+  
+  users       UserAchievement[]
+}
+
+model UserAchievement {
+  userId        String
+  achievementId String
+  unlockedAt    DateTime @default(now())
+  
+  user        User        @relation(fields: [userId], references: [id])
+  achievement Achievement @relation(fields: [achievementId], references: [id])
+  
+  @@id([userId, achievementId])
+} 

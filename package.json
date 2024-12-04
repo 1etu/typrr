@@ -1,0 +1,33 @@
+{
+  "name": "typrr",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "cli": "tsx scripts/cli.js",
+    "dev": "tsx watch src/index.ts",
+    "start": "tsx scripts/cli.js start",
+    "watch": "tsx watch src/index.ts",
+    "setup": "node scripts/setup.js"
+  },
+  "author": "1etu (Ege Türker)",
+  "license": "ISC",
+  "description": "Your monkeytype companion, in Discord",
+  "dependencies": {
+    "@prisma/client": "^5.10.2",
+    "archiver": "^7.0.1",
+    "chalk": "^4.1.2",
+    "commander": "^11.1.0",
+    "discord.js": "^14.16.3",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.9",
+    "express": "^4.21.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "copyfiles": "^2.4.1",
+    "prisma": "^5.10.2",
+    "tsup": "^8.3.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
